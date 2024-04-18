@@ -12,9 +12,9 @@ function GenedSection() {
     <ThemeProvider theme={theme}>
       <section className="w-full px-[42px] py-[56px]">
         {" "}
-        <h1 className="text-primary text-[40px] font-semibold uppercase mb-[26px]">
+        <h2 className="text-primary text-[40px] font-semibold uppercase mb-[26px]">
           Gen-Ed
-        </h1>
+        </h2>
         <div className="space-y-6">
           <input
             className="w-full px-6 py-4 placeholder:text-primary border rounded-full"
