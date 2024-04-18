@@ -7,23 +7,8 @@ import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import Button from "@mui/material/Button";
 
-import { createTheme, ThemeProvider } from "@mui/material/styles";
-let theme = createTheme({
-  // Theme customization goes here as usual, including tonalOffset and/or
-  // contrastThreshold as the augmentColor() function relies on these
-});
-
-theme = createTheme(theme, {
-  // Custom colors created with augmentColor go here
-  palette: {
-    primary: theme.palette.augmentColor({
-      color: {
-        main: "#2A2D48",
-      },
-      name: "primary",
-    }),
-  },
-});
+import { ThemeProvider } from "@mui/material/styles";
+import theme from "./theme";
 
 function CurriculumSection() {
   return (
@@ -98,7 +83,7 @@ function CurriculumSection() {
             </Button>
           </div>
         </div>
-        <div className="bg-gray-400 w-full h-full"></div>
+        <div className="bg-gray-400 w-full h-48"></div>
       </section>
     </ThemeProvider>
   );
