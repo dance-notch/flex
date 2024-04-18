@@ -6,6 +6,7 @@ import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import theme from "./theme";
+
 function GenedSection() {
   return (
     <ThemeProvider theme={theme}>
@@ -23,37 +24,38 @@ function GenedSection() {
           <div className="flex gap-6">
             <Box sx={{ width: 230 }}>
               <FormControl fullWidth fullHeight>
-                <InputLabel id="demo-simple-select-label">Faculty</InputLabel>
+                <InputLabel id="demo-simple-select-label">Semester</InputLabel>
                 <Select
                   labelId="demo-simple-select-label"
                   id="demo-simple-select"
                   value={""}
                   label="Semester"
                 >
-                  <MenuItem value={10}>Ten</MenuItem>
-                  <MenuItem value={20}>Twenty</MenuItem>
-                  <MenuItem value={30}>Thirty</MenuItem>
+                  <MenuItem value={10}>First Semester</MenuItem>
+                  <MenuItem value={20}>Second Semester</MenuItem>
+                  <MenuItem value={30}>Summer</MenuItem>
                 </Select>
               </FormControl>
             </Box>
             <Box sx={{ width: 230 }}>
               <FormControl fullWidth>
-                <InputLabel id="demo-simple-select-label">Major</InputLabel>
+                <InputLabel id="demo-simple-select-label">
+                  Curriculum
+                </InputLabel>
                 <Select
                   labelId="demo-simple-select-label"
                   id="demo-simple-select"
                   value={""}
                   label="Curriculum"
                 >
-                  <MenuItem value={10}>Ten</MenuItem>
-                  <MenuItem value={20}>Twenty</MenuItem>
-                  <MenuItem value={30}>Thirty</MenuItem>
+                  <MenuItem value={10}>Thai</MenuItem>
+                  <MenuItem value={20}>International</MenuItem>
                 </Select>
               </FormControl>
             </Box>
             <Box sx={{ width: 230 }}>
               <FormControl fullWidth>
-                <InputLabel id="demo-simple-select-label">Major</InputLabel>
+                <InputLabel id="demo-simple-select-label">Context</InputLabel>
                 <Select
                   labelId="demo-simple-select-label"
                   id="demo-simple-select"
