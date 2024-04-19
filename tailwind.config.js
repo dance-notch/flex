@@ -17,7 +17,7 @@ module.exports = {
         secondary: "#f7f7f8",
         "hack-gray": {
           DEFAULT: "#D8D8FF",
-          stroke: "D8D8FF",
+          stroke: "#D8D8FF",
           text: "#2A2D48",
         },
         "hack-yellow": {
@@ -26,12 +26,12 @@ module.exports = {
           text: "#EB9C03",
         },
         "hack-blue": {
-          default: "#35A1EF",
+          DEFAULT: "#35A1EF",
           stroke: "#0C5A93",
           text: "#0C5A93",
         },
         "hack-green": {
-          default: "#0C5A93",
+          DEFAULT: "#A2FF6A",
           stroke: "#4B991C",
           text: "#4B991C",
         },
