@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 import Box from "@mui/material/Box";
 import InputLabel from "@mui/material/InputLabel";
@@ -9,6 +10,7 @@ import Button from "@mui/material/Button";
 import { ThemeProvider } from "@mui/material/styles";
 import theme from "./theme";
 import SubjectBox from "./SubjectBox";
+import Dropbox from "./Dropbox";
 
 const FilterSection = () => {
   return (
@@ -80,7 +82,7 @@ const FilterSection = () => {
   );
 };
 
-function CurriculumSection() {
+function CurriculumSection({ semester, setSemester, course, setCourse }) {
   return (
     <ThemeProvider theme={theme}>
       <section className="w-full px-[42px] py-[56px]">
@@ -89,18 +91,60 @@ function CurriculumSection() {
           Flex
         </h1>
         <FilterSection />
-        <div className="w-full flex gap-2.5 overflow-auto max-h-screen overflow-auto">
-          {[1, 2, 3, 4, 5, 6].map(() => {
+        <div className="w-full flex gap-2.5 max-h-screen overflow-auto">
+          {semester.map((item) => {
             return (
               <div className=" bg-white w-[230px] p-2.5 min-h-[600px] h-max border-[1px] border-hack-gray-stroke rounded">
                 <div className="w-max h-full bg-[#FAFAFF] rounded-[15px] flex flex-col items-center p-2.5 gap-5">
                   <p className="font-semibold text-[16px] text-center py-2.5 px-[50px] border border-primary rounded-[5px] mb-4">
-                    Year 1 <br />
-                    Semester 1
+                    Year {item.year} <br />
+                    Semester {item.semester}
                   </p>
-                  {[1, 2, 3, 4, 5, 6, 7, 8, 9].map(() => {
-                    return <SubjectBox />;
-                  })}
+                  {item.year === 1 && item.semester === 1 ? (
+                    <>
+                      <Dropbox
+                        id={"111"}
+                        year={item.year}
+                        semester={item.semester}
+                      >
+                        {item.dropbox["1"] ? (
+                          <SubjectBox
+                            course={course}
+                            id={course[item.dropbox["1"]].dropbox}
+                            codeId={item.dropbox["1"]}
+                          />
+                        ) : (
+                          <></>
+                        )}
+                      </Dropbox>
+                      <Dropbox
+                        id={"112"}
+                        year={item.year}
+                        semester={item.semester}
+                      >
+                        {item.dropbox["2"] ? (
+                          <SubjectBox
+                            course={course}
+                            id={course[item.dropbox["2"]].dropbox}
+                            codeId={item.dropbox["2"]}
+                          />
+                        ) : (
+                          <></>
+                        )}
+                      </Dropbox>
+                      {item.dropbox["1"] || item.dropbox["2"] ? (
+                        <></>
+                      ) : (
+                        <SubjectBox
+                          course={course}
+                          id="222"
+                          codeId={"3404117"}
+                        />
+                      )}
+                    </>
+                  ) : (
+                    <></>
+                  )}
                 </div>
               </div>
             );
