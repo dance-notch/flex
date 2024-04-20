@@ -33,13 +33,13 @@ function SubjectBox({
           style={style}
           {...listeners}
           {...attributes}
-          className={`w-[183px] h-[100px] border-[1px] rounded flex z-[50] `}
+          className={`w-[183px] h-[100px] border-[1px] rounded flex z-[50] border-hack-${color}-stroke`}
           onClick={handleOpen}
         >
+          <div className={`h-full w-[25px] rounded-l bg-hack-${color}`}></div>
           <div
-            className={`h-full w-[25px] rounded-l bg-hack-gray-stroke`}
-          ></div>
-          <div className="w-full text-center flex flex-col justify-center items-center bg-white text-hack-gray-text">
+            className={`w-full text-center flex flex-col justify-center items-center bg-white text-hack-${color}-text`}
+          >
             <p className="font-semibold">{codeId}</p>
             <p className="font-semibold">{tmpCourse?.abbrName}</p>
             <p>{tmpCourse?.credit} credits</p>

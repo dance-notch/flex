@@ -5,6 +5,24 @@ module.exports = {
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
+  safelist: [
+    "bg-hack-gray",
+    "bg-hack-gray-stroke",
+    "border-hack-gray-stroke",
+    "text-hack-gray-text",
+    "bg-hack-yellow",
+    "bg-hack-yellow-stroke",
+    "border-hack-yellow-stroke",
+    "text-hack-yellow-text",
+    "bg-hack-blue",
+    "bg-hack-blue-stroke",
+    "border-hack-blue-stroke",
+    "text-hack-blue-text",
+    "bg-hack-green",
+    "bg-hack-green-stroke",
+    "border-hack-green-stroke",
+    "text-hack-green-text",
+  ],
   theme: {
     extend: {
       fontFamily: {
