@@ -99,7 +99,7 @@ function CurriculumSection({ semester, setSemester, course, setCourse }) {
         <div className="w-full flex gap-2.5 max-h-screen overflow-auto">
           {semester.map((item) => {
             return (
-              <div className=" bg-white w-[230px] p-2.5 min-h-[600px] h-max border-[1px] border-hack-gray-stroke rounded">
+              <div className="text-primary bg-white w-[230px] p-2.5 min-h-[600px] h-max border-[1px] border-hack-gray-stroke rounded">
                 <div className="w-max h-full bg-[#FAFAFF] rounded-[15px] flex flex-col items-center p-2.5 gap-5">
                   <p className="font-semibold text-[16px] text-center py-2.5 px-[50px] border border-primary rounded-[5px] mb-4">
                     Year {item.year} <br />
