@@ -7,11 +7,16 @@ import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import theme from "./theme";
 import Modal from "@mui/material/Modal";
+import FormControlLabel from "@mui/material/FormControlLabel";
+import Checkbox from "@mui/material/Checkbox";
 import { useState } from "react";
 
 import { dataGenEd } from "@/utilities/dataGenEd";
 
-const FilterSection = () => {
+const FilterSection = ({ setCudson }) => {
+  const [filterSemester, setFilterSemester] = useState("");
+  const [filterCurriculum, setFilterCurriculum] = useState("");
+
   return (
     <div className="space-y-6 mb-5">
       <input
@@ -26,12 +31,15 @@ const FilterSection = () => {
             <Select
               labelId="demo-simple-select-label"
               id="demo-simple-select"
-              value={""}
+              value={filterSemester}
               label="Semester"
+              onChange={(event) => {
+                setFilterSemester(event.target.value);
+              }}
             >
-              <MenuItem value={10}>First Semester</MenuItem>
-              <MenuItem value={20}>Second Semester</MenuItem>
-              <MenuItem value={30}>Summer</MenuItem>
+              <MenuItem value={"First Semester"}>First Semester</MenuItem>
+              <MenuItem value={"Second Semester"}>Second Semester</MenuItem>
+              <MenuItem value={"Summer"}>Summer</MenuItem>
             </Select>
           </FormControl>
         </Box>
@@ -41,29 +49,28 @@ const FilterSection = () => {
             <Select
               labelId="demo-simple-select-label"
               id="demo-simple-select"
-              value={""}
+              value={filterCurriculum}
               label="Curriculum"
+              onChange={(event) => {
+                setFilterCurriculum(event.target.value);
+              }}
             >
-              <MenuItem value={10}>Thai</MenuItem>
-              <MenuItem value={20}>International</MenuItem>
+              <MenuItem value={"Thai"}>Thai</MenuItem>
+              <MenuItem value={"International"}>International</MenuItem>
             </Select>
           </FormControl>
         </Box>
-        <Box sx={{ width: 230 }}>
-          <FormControl fullWidth>
-            <InputLabel id="demo-simple-select-label">Context</InputLabel>
-            <Select
-              labelId="demo-simple-select-label"
-              id="demo-simple-select"
-              value={""}
-              label="Context"
-            >
-              <MenuItem value={10}>Ten</MenuItem>
-              <MenuItem value={20}>Twenty</MenuItem>
-              <MenuItem value={30}>Thirty</MenuItem>
-            </Select>
-          </FormControl>
-        </Box>
+        <FormControlLabel
+          control={
+            <Checkbox
+              onChange={() => {
+                setCudson((prev) => !prev);
+              }}
+              sx={{ "& .MuiSvgIcon-root": { fontSize: 32 } }}
+            />
+          }
+          label="Recommend from CUDSON"
+        />
       </div>
     </div>
   );
@@ -77,10 +84,23 @@ function GenedSection({
   setCheckDelete = () => {},
   openCheck = true,
 }) {
+  const [cudson, setCudson] = useState(false);
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
   const [data, setData] = useState(null);
+
+  const shuffleArray = (array) => {
+    for (let i = array.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [array[i], array[j]] = [array[j], array[i]];
+    }
+    return array;
+  };
+
+  const keys = Object.keys(dataGenEd);
+  const shuffledKeys = shuffleArray(keys);
+  const selectedKeys = shuffledKeys.slice(0, 5);
   return (
     <ThemeProvider theme={theme}>
       <section className="w-full px-[42px] py-[56px]">
@@ -88,9 +108,9 @@ function GenedSection({
         <h2 className="text-primary text-[40px] font-semibold uppercase mb-[26px]">
           {name}
         </h2>
-        <FilterSection />
+        <FilterSection setCudson={setCudson} />
         <div className="flex flex-wrap w-full h-[225px] overflow-auto gap-x-10 gap-y-[25px]">
-          {Object.keys(dataGenEd).map((key) => {
+          {(cudson ? selectedKeys : Object.keys(dataGenEd)).map((key) => {
             const color = "gray";
             const tmpCourse = dataGenEd[key];
             const handleClick = () => {
