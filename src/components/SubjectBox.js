@@ -4,15 +4,7 @@ import generateId from "@/utilities/generateId";
 import { useState } from "react";
 import Modal from "@mui/material/Modal";
 
-function GenEdBox({ codeId, course }) {
-  return <></>;
-}
-
 function SubjectBox({ id, codeId, course }) {
-  if (id === "xxxxxxx") {
-    return <></>;
-  }
-
   const { attributes, listeners, setNodeRef, transform } = useDraggable({
     id: id === "xxxxxxx" ? "000" + generateId() : id,
     data: { codeId },
@@ -42,15 +34,15 @@ function SubjectBox({ id, codeId, course }) {
           style={style}
           {...listeners}
           {...attributes}
-          className={`relative w-[183px] h-[100px] border-[1px] rounded flex z-[50] border-hack-${color}-stroke`}
+          className={`relative w-[183px] h-[100px] border-[1px] rounded flex z-[50] border-hack-${color}-stroke active:z-[1000]`}
         >
           <div
             onClick={handleOpen}
-            className="z-10 absolute w-full h-full opacity-0 hover:opacity-100 transition-opacity duration-300"
+            className="absolute w-full h-full opacity-0 hover:opacity-100 transition-opacity duration-300"
           >
             <svg
               onClick={alertHandleOpen}
-              className={`z-50 absolute right-0 top-0 translate-x-1/2 -translate-y-1/2 stroke-hack-${color}-stroke`}
+              className={`absolute right-0 top-0 translate-x-1/2 -translate-y-1/2 stroke-hack-${color}-stroke`}
               width="27"
               height="27"
               viewBox="0 0 27 27"
@@ -75,9 +67,10 @@ function SubjectBox({ id, codeId, course }) {
           >
             <p className="font-semibold">{codeId}</p>
             <p className="font-semibold break-words">{tmpCourse?.abbrName}</p>
-            <p>{tmpCourse?.credit} credits</p>
+            <p>({tmpCourse?.credit} credits)</p>
           </div>
         </div>
+
         <Modal
           open={open && !alertOpen}
           onClose={handleClose}
