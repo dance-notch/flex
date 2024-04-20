@@ -112,10 +112,20 @@ function CurriculumSection({ semester, setSemester, course, setCourse }) {
                         year={item.year}
                         semester={item.semester}
                       >
-                        {item.dropbox[index2] ? (
+                        {/* {item.dropbox[index2] ? (
                           <SubjectBox
                             course={course}
                             id={course[item.dropbox[index2]].dropbox}
+                            codeId={item.dropbox[index2]}
+                          /> */}
+                        {item.dropbox[index2] && course ? (
+                          <SubjectBox
+                            course={course}
+                            id={
+                              course.filter((tmp) => {
+                                return tmp.courseNo === item.dropbox[index2];
+                              })[0]?.dropbox
+                            }
                             codeId={item.dropbox[index2]}
                           />
                         ) : (
@@ -124,51 +134,6 @@ function CurriculumSection({ semester, setSemester, course, setCourse }) {
                       </Dropbox>
                     );
                   })}
-                  {/* {item.year === 1 && item.semester === 1 ? (
-                    <>
-                      <Dropbox
-                        id={"111"}
-                        year={item.year}
-                        semester={item.semester}
-                      >
-                        {item.dropbox["1"] ? (
-                          <SubjectBox
-                            course={course}
-                            id={course[item.dropbox["1"]].dropbox}
-                            codeId={item.dropbox["1"]}
-                          />
-                        ) : (
-                          <></>
-                        )}
-                      </Dropbox>
-                      <Dropbox
-                        id={"112"}
-                        year={item.year}
-                        semester={item.semester}
-                      >
-                        {item.dropbox["2"] ? (
-                          <SubjectBox
-                            course={course}
-                            id={course[item.dropbox["2"]].dropbox}
-                            codeId={item.dropbox["2"]}
-                          />
-                        ) : (
-                          <></>
-                        )}
-                      </Dropbox>
-                      {item.dropbox["1"] || item.dropbox["2"] ? (
-                        <></>
-                      ) : (
-                        <SubjectBox
-                          course={course}
-                          id="222"
-                          codeId={"3404117"}
-                        />
-                      )}
-                    </>
-                  ) : (
-                    <></>
-                  )} */}
                 </div>
               </div>
             );
