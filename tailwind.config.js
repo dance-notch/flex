@@ -5,33 +5,54 @@ module.exports = {
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
+  safelist: [
+    "bg-hack-gray",
+    "bg-hack-gray-stroke",
+    "border-hack-gray-stroke",
+    "text-hack-gray-text",
+    "bg-hack-yellow",
+    "bg-hack-yellow-stroke",
+    "border-hack-yellow-stroke",
+    "text-hack-yellow-text",
+    "bg-hack-blue",
+    "bg-hack-blue-stroke",
+    "border-hack-blue-stroke",
+    "text-hack-blue-text",
+    "bg-hack-green",
+    "bg-hack-green-stroke",
+    "border-hack-green-stroke",
+    "text-hack-green-text",
+  ],
   theme: {
     extend: {
+      fontFamily: {
+        "poppins": ["Poppins", "sans-serif"],
+      },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
         "gradient-conic":
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
       },
-      color: {
-        primary: "#2A2D48",
+      colors: {
+        primary: { DEFAULT: "#2A2D48" },
         secondary: "#f7f7f8",
         "hack-gray": {
-          default: "#D8D8FF",
-          stroke: "D8D8FF",
+          DEFAULT: "#D8D8FF",
+          stroke: "#D8D8FF",
           text: "#2A2D48",
         },
         "hack-yellow": {
-          default: "#FFD541",
+          DEFAULT: "#FFD541",
           stroke: "#EB9C03",
           text: "#EB9C03",
         },
         "hack-blue": {
-          default: "#35A1EF",
+          DEFAULT: "#35A1EF",
           stroke: "#0C5A93",
           text: "#0C5A93",
         },
         "hack-green": {
-          default: "#0C5A93",
+          DEFAULT: "#A2FF6A",
           stroke: "#4B991C",
           text: "#4B991C",
         },
