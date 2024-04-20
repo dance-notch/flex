@@ -87,9 +87,14 @@ function CurriculumSection({ semester, setSemester, course, setCourse }) {
     <ThemeProvider theme={theme}>
       <section className="w-full px-[42px] py-[56px]">
         {" "}
-        <h1 className="text-primary text-5xl font-bold uppercase mb-[42px]">
-          Flex
-        </h1>
+        <div className="flex items-center mb-[42px] text-primary uppercase">
+          <h1 className=" text-5xl font-bold pr-3 py-2 border-r-2 border-primary">
+            Flex
+          </h1>
+          <p className="pl-3 py-2 text-xs font-semibold">
+            flexible <br /> degree <br /> planner
+          </p>
+        </div>
         <FilterSection />
         <div className="w-full flex gap-2.5 max-h-screen overflow-auto">
           {semester.map((item) => {
@@ -100,7 +105,26 @@ function CurriculumSection({ semester, setSemester, course, setCourse }) {
                     Year {item.year} <br />
                     Semester {item.semester}
                   </p>
-                  {item.year === 1 && item.semester === 1 ? (
+                  {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((index2) => {
+                    return (
+                      <Dropbox
+                        id={"" + item.year + item.semester + index2}
+                        year={item.year}
+                        semester={item.semester}
+                      >
+                        {item.dropbox[index2] ? (
+                          <SubjectBox
+                            course={course}
+                            id={course[item.dropbox[index2]].dropbox}
+                            codeId={item.dropbox[index2]}
+                          />
+                        ) : (
+                          <></>
+                        )}
+                      </Dropbox>
+                    );
+                  })}
+                  {/* {item.year === 1 && item.semester === 1 ? (
                     <>
                       <Dropbox
                         id={"111"}
@@ -144,7 +168,7 @@ function CurriculumSection({ semester, setSemester, course, setCourse }) {
                     </>
                   ) : (
                     <></>
-                  )}
+                  )} */}
                 </div>
               </div>
             );
