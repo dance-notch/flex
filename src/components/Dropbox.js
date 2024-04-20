@@ -6,15 +6,10 @@ function Dropbox({ id, year, semester, children }) {
     id: id,
     data: { year, semester },
   });
-  const style = {
-    color: isOver ? "green" : undefined,
-  };
-
   return (
     <div
       ref={setNodeRef}
-      style={style}
-      className="w-[183px] h-[100px] border-[1px] rounded border-dashed"
+      className="w-[183px] h-[100px]  border-[1px] rounded border-dashed"
     >
       {children}
     </div>
