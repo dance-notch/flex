@@ -4,12 +4,7 @@ import generateId from "@/utilities/generateId";
 import { useState } from "react";
 import Modal from "@mui/material/Modal";
 
-function SubjectBox({
-  id = "000" + generateId(),
-  codeId,
-  course,
-  color = "gray",
-}) {
+function SubjectBox({ id = "000" + generateId(), codeId, course }) {
   const { attributes, listeners, setNodeRef, transform } = useDraggable({
     id: id === "xxxxxxx" ? "000" + generateId() : id,
     data: { codeId },
@@ -23,6 +18,7 @@ function SubjectBox({
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
   const tmpCourse = course[codeId];
+  const color = course[codeId].color ? course[codeId].color : "gray";
   return (
     course && (
       <>
