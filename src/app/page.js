@@ -5,7 +5,7 @@ import GenedSection from "@/components/GenedSection";
 import SummarySection from "@/components/SummarySection";
 import { DndContext } from "@dnd-kit/core";
 import { dataSemester, dataCourse } from "@/utilities/dataSemester";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useSensor, useSensors, MouseSensor } from "@dnd-kit/core";
 
 export default function Home() {
@@ -16,6 +16,12 @@ export default function Home() {
   );
   const [semester, setSemester] = useState(dataSemester);
   const [course, setCourse] = useState(dataCourse);
+
+  const reset = () => {
+    setSemester(dataSemester);
+    setCourse(dataCourse);
+    window.location.reload();
+  };
   return (
     <main className="bg-white w-full h-full font-poppins">
       <Navbar />
@@ -89,13 +95,8 @@ export default function Home() {
             })
           );
           setCourse((prevData) => {
-            // Create a copy of the previous state
             const newData = { ...prevData };
-
-            // Find the course with the matching course number
             const courseToUpdate = newData[activeCodeId];
-
-            // If the course exists, update its dropbox property
             if (courseToUpdate) {
               courseToUpdate.dropbox =
                 "" +
@@ -104,40 +105,12 @@ export default function Home() {
                 overId;
             }
 
-            // Return the updated state
             return newData;
           });
-          // setCourse((prevData) =>
-          //   prevData.map((item, index) => {
-          //     if (item.courseNo === activeCodeId) {
-          //       return {
-          //         ...item,
-          //         dropbox:
-          //           "" +
-          //           over.data.current.year +
-          //           over.data.current.semester +
-          //           overId,
-          //       };
-          //     } else {
-          //       return item;
-          //     }
-          //   })
-          // );
-
-          // setCourse((prevData) => ({
-          //   ...prevData,
-          //   [activeCodeId]: {
-          //     ...prevData[activeCodeId],
-          //     dropbox:
-          //       "" +
-          //       over.data.current.year +
-          //       over.data.current.semester +
-          //       overId,
-          //   },
-          // }));
         }}
       >
         <CurriculumSection
+          reset={reset}
           semester={semester}
           setSemester-={setSemester}
           course={course}

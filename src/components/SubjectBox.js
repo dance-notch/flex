@@ -4,7 +4,15 @@ import generateId from "@/utilities/generateId";
 import { useState } from "react";
 import Modal from "@mui/material/Modal";
 
-function SubjectBox({ id = "000" + generateId(), codeId, course }) {
+function GenEdBox({ codeId, course }) {
+  return <></>;
+}
+
+function SubjectBox({ id, codeId, course }) {
+  if (id === "xxxxxxx") {
+    return <></>;
+  }
+
   const { attributes, listeners, setNodeRef, transform } = useDraggable({
     id: id === "xxxxxxx" ? "000" + generateId() : id,
     data: { codeId },
@@ -35,7 +43,7 @@ function SubjectBox({ id = "000" + generateId(), codeId, course }) {
             className={`w-full text-center flex flex-col justify-center items-center bg-white text-hack-${color}-text`}
           >
             <p className="font-semibold">{codeId}</p>
-            <p className="font-semibold">{tmpCourse?.abbrName}</p>
+            <p className="font-semibold break-words">{tmpCourse?.abbrName}</p>
             <p>{tmpCourse?.credit} credits</p>
           </div>
         </div>
@@ -45,7 +53,7 @@ function SubjectBox({ id = "000" + generateId(), codeId, course }) {
           aria-labelledby="modal-modal-title"
           aria-describedby="modal-modal-description"
         >
-          <div className="min-w-[787px] fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white px-14 py-12 rounded-[16px] space-y-[14px]">
+          <div className="min-w-[900px] fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white px-14 py-12 rounded-[16px] space-y-[14px]">
             <p className="w-full flex justify-between items-center text-[32px] font-bold text-primary">
               {`${tmpCourse?.courseNo} ${tmpCourse?.abbrName}`}
               <button onClick={handleClose}>
@@ -73,26 +81,31 @@ function SubjectBox({ id = "000" + generateId(), codeId, course }) {
             <div className="flex justify-between items-center">
               <div>
                 <p className="text-[#C9CCE4] font-bold text-[20px]">
-                  คณะ <br /> <span className="text-primary">Loem</span>
+                  คณะ <br />{" "}
+                  <span className="text-primary text-wrap">Loem</span>
                 </p>
               </div>
               <div>
-                <p className="min-w-[250px] text-[#C9CCE4] font-bold text-[20px]">
+                <p className="w-[300px] text-[#C9CCE4] font-bold text-[20px]">
                   ภาควิชา/กลุ่มวิชา/สาขาวิชา <br />{" "}
-                  <span className="text-primary">{tmpCourse?.department}</span>
+                  <span className="text-primary text-wrap">
+                    {tmpCourse?.department}
+                  </span>
                 </p>
               </div>
             </div>
             <div className="flex justify-between items-center">
               <div>
-                <p className="text-[#C9CCE4] font-bold text-[20px]">
+                <p className="max-w-[350px] text-[#C9CCE4] font-bold text-[20px]">
                   รูปแบบรายวิชา
                   <br />{" "}
-                  <span className="text-primary">{tmpCourse?.creditHours}</span>
+                  <span className="text-primary text-wrap">
+                    {tmpCourse?.creditHours}
+                  </span>
                 </p>
               </div>
               <div>
-                <p className="min-w-[250px] text-[#C9CCE4] font-bold text-[20px]">
+                <p className="w-[300px] text-[#C9CCE4] font-bold text-[20px]">
                   หน่วยกิต <br />{" "}
                   <span className="text-primary">{tmpCourse?.credit}</span>
                 </p>
@@ -106,7 +119,7 @@ function SubjectBox({ id = "000" + generateId(), codeId, course }) {
                 </p>
               </div>
               <div>
-                <p className="min-w-[250px] text-[#C9CCE4] font-bold text-[20px]">
+                <p className="w-[300px] text-[#C9CCE4] font-bold text-[20px]">
                   สอบปลายภาค
                   <br /> <span className="text-primary">TBA</span>
                 </p>
@@ -117,13 +130,13 @@ function SubjectBox({ id = "000" + generateId(), codeId, course }) {
                 <p className="text-[#C9CCE4] font-bold text-[20px]">
                   เงื่อนไขรายวิชา
                   <br />{" "}
-                  <span className="text-primary">
+                  <span className="text-primary text-wrap">
                     {tmpCourse?.courseCondition}
                   </span>
                 </p>
               </div>
               <div>
-                <p className="min-w-[250px] text-[#C9CCE4] font-bold text-[20px]">
+                <p className="w-[300px] text-[#C9CCE4] font-bold text-[20px]">
                   วิธีการวัดผล
                   <br /> <span className="text-primary">Letter Grade</span>
                 </p>

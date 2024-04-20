@@ -12,7 +12,7 @@ import theme from "./theme";
 import SubjectBox from "./SubjectBox";
 import Dropbox from "./Dropbox";
 
-const FilterSection = () => {
+const FilterSection = ({ reset }) => {
   return (
     <div className="flex justify-between mb-[10px]">
       <div className="flex gap-[10px]">
@@ -46,7 +46,11 @@ const FilterSection = () => {
             </Select>
           </FormControl>
         </Box>
-        <Button sx={{ height: "56px", width: "56px" }} variant="outlined">
+        <Button
+          onClick={reset}
+          sx={{ height: "56px", width: "56px" }}
+          variant="outlined"
+        >
           <svg
             width="24"
             height="24"
@@ -82,7 +86,13 @@ const FilterSection = () => {
   );
 };
 
-function CurriculumSection({ semester, setSemester, course, setCourse }) {
+function CurriculumSection({
+  reset,
+  semester,
+  setSemester,
+  course,
+  setCourse,
+}) {
   return (
     <ThemeProvider theme={theme}>
       <section className="w-full px-[42px] py-[56px]">
@@ -95,11 +105,14 @@ function CurriculumSection({ semester, setSemester, course, setCourse }) {
             flexible <br /> degree <br /> planner
           </p>
         </div>
-        <FilterSection />
+        <FilterSection reset={reset} />
         <div className="w-full flex gap-2.5 max-h-screen overflow-auto">
           {semester.map((item) => {
             return (
-              <div className="text-primary bg-white w-[230px] p-2.5 min-h-[600px] h-max border-[1px] border-hack-gray-stroke rounded">
+              <div
+                key={"123" + item.year + item.semester}
+                className="text-primary bg-white w-[230px] p-2.5 min-h-[600px] h-max border-[1px] border-hack-gray-stroke rounded"
+              >
                 <div className="w-max h-full bg-[#FAFAFF] rounded-[15px] flex flex-col items-center p-2.5 gap-5">
                   <p className="font-semibold text-[16px] text-center py-2.5 px-[50px] border border-primary rounded-[5px] mb-4">
                     Year {item.year} <br />
@@ -108,6 +121,7 @@ function CurriculumSection({ semester, setSemester, course, setCourse }) {
                   {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((index2) => {
                     return (
                       <Dropbox
+                        key={"" + item.year + item.semester + index2}
                         id={"" + item.year + item.semester + index2}
                         year={item.year}
                         semester={item.semester}
