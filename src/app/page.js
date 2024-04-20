@@ -22,6 +22,17 @@ export default function Home() {
     setCourse(dataCourse);
     window.location.reload();
   };
+
+  if (window.innerWidth < 1024) {
+    return (
+      <main className="flex flex-col items-center justify-center bg-white w-full min-h-screen font-poppins">
+        <h1 className="w-full text-primary text-bold text-2xl text-center p-4">
+          Please use desktop device for continue
+        </h1>
+      </main>
+    );
+  }
+
   return (
     <main className="bg-white w-full h-full font-poppins">
       <Navbar />
