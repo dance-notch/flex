@@ -32,6 +32,7 @@ export default function Home() {
       </main>
     );
   }
+  console.log("semester", semester);
 
   return (
     <main className="bg-white w-full h-full font-poppins">
@@ -55,7 +56,13 @@ export default function Home() {
           const activeYear = active.id[0] ? active.id[0] - 0 : 0;
           const activeSemester = active.id[1] ? active.id[1] - 0 : 0;
           const activeId = active.id[2] ? active.id[2] : 0;
-          const activeCodeId = active.data.current.codeId;
+          const activeCodeId = active.data.current.checkDelete
+            ? ""
+            : active.data.current.codeId;
+          const check =
+            active.id.includes("gened") ||
+            active.id.includes("elective") ||
+            active.id.includes("freeElective");
           console.log("active", active);
           console.log("over", over);
           console.log(
@@ -80,7 +87,9 @@ export default function Home() {
                     ...item,
                     dropbox: {
                       ...item.dropbox,
-                      [overId]: activeCodeId,
+                      [overId]: !check
+                        ? activeCodeId
+                        : activeCodeId + active.id.replace(/[0-9]/g, ""),
                       [activeId]: null,
                     },
                   };
@@ -89,7 +98,9 @@ export default function Home() {
                   ...item,
                   dropbox: {
                     ...item.dropbox,
-                    [overId]: activeCodeId,
+                    [overId]: !check
+                      ? activeCodeId
+                      : activeCodeId + active.id.replace(/[0-9]/g, ""),
                   },
                 };
               } else if (
@@ -123,12 +134,12 @@ export default function Home() {
         <CurriculumSection
           reset={reset}
           semester={semester}
-          setSemester-={setSemester}
+          setSemester={setSemester}
           course={course}
           setCourse={setCourse}
         />
       </DndContext>
-      <GenedSection course={course} />
+      <GenedSection />
       <SummarySection />
     </main>
   );

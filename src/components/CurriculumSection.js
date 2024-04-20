@@ -11,6 +11,8 @@ import { ThemeProvider } from "@mui/material/styles";
 import theme from "./theme";
 import SubjectBox from "./SubjectBox";
 import Dropbox from "./Dropbox";
+import GenEdDropBox from "./GenEdDropbox";
+import generateId from "@/utilities/generateId";
 
 const FilterSection = ({ reset }) => {
   return (
@@ -126,18 +128,24 @@ function CurriculumSection({
                         year={item.year}
                         semester={item.semester}
                       >
-                        {/* {item.dropbox[index2] ? (
-                          <SubjectBox
-                            course={course}
-                            id={course[item.dropbox[index2]].dropbox}
-                            codeId={item.dropbox[index2]}
-                          /> */}
                         {item.dropbox[index2] && course ? (
-                          <SubjectBox
-                            course={course}
-                            id={course[item.dropbox[index2]]?.dropbox}
-                            codeId={item.dropbox[index2]}
-                          />
+                          !item.dropbox[index2].includes("gened") &&
+                          !item.dropbox[index2].includes("freeElective") &&
+                          !item.dropbox[index2].includes("elective") ? (
+                            <SubjectBox
+                              course={course}
+                              id={course[item.dropbox[index2]]?.dropbox}
+                              codeId={item.dropbox[index2]}
+                            />
+                          ) : (
+                            <GenEdDropBox
+                              index={index2}
+                              codeId={item.dropbox[index2]}
+                              year={item.year}
+                              semester={item.semester}
+                              setSemester={setSemester}
+                            />
+                          )
                         ) : (
                           <></>
                         )}
