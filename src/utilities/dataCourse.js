@@ -18,6 +18,7 @@ export const dataCourse = {
     "genEdType": "SO",
     "__typename": "Course",
     "dropbox": "111",
+    "color": "gray",
   },
   "0123101": {
     "studyProgram": "S",
@@ -39,6 +40,7 @@ export const dataCourse = {
     "genEdType": "HU",
     "__typename": "Course",
     "dropbox": "112",
+    "color": "gray",
   },
   "5500111": {
     "studyProgram": "S",
@@ -60,6 +62,7 @@ export const dataCourse = {
     "genEdType": "NO",
     "__typename": "Course",
     "dropbox": "113",
+    "color": "yellow",
   },
   "2601112": {
     "studyProgram": "S",
@@ -81,6 +84,7 @@ export const dataCourse = {
     "genEdType": "NO",
     "__typename": "Course",
     "dropbox": "114",
+    "color": "blue",
   },
   "2940104": {
     "studyProgram": "S",
@@ -102,6 +106,7 @@ export const dataCourse = {
     "genEdType": "NO",
     "__typename": "Course",
     "dropbox": "115",
+    "color": "blue",
   },
   "2945111": {
     "studyProgram": "S",
@@ -122,6 +127,7 @@ export const dataCourse = {
     "genEdType": "NO",
     "__typename": "Course",
     "dropbox": "117",
+    "color": "green",
   },
   "2400104": {
     "studyProgram": "S",
@@ -143,6 +149,7 @@ export const dataCourse = {
     "genEdType": "SO",
     "__typename": "Course",
     "dropbox": "121",
+    "color": "gray",
   },
   "5500112": {
     "studyProgram": "S",
@@ -164,6 +171,7 @@ export const dataCourse = {
     "genEdType": "NO",
     "__typename": "Course",
     "dropbox": "123",
+    "color": "yellow",
   },
   "2940203": {
     "studyProgram": "S",
@@ -185,6 +193,7 @@ export const dataCourse = {
     "genEdType": "NO",
     "__typename": "Course",
     "dropbox": "125",
+    "color": "blue",
   },
   "2940204": {
     "studyProgram": "S",
@@ -205,6 +214,7 @@ export const dataCourse = {
     "genEdType": "NO",
     "__typename": "Course",
     "dropbox": "126",
+    "color": "blue",
   },
   "2945112": {
     "studyProgram": "S",
@@ -225,6 +235,7 @@ export const dataCourse = {
     "genEdType": "NO",
     "__typename": "Course",
     "dropbox": "127",
+    "color": "green",
   },
   "5500235": {
     "studyProgram": "S",
@@ -244,6 +255,7 @@ export const dataCourse = {
     "genEdType": "NO",
     "__typename": "Course",
     "dropbox": "213",
+    "color": "yellow",
   },
   "2941103": {
     "studyProgram": "S",
@@ -263,6 +275,7 @@ export const dataCourse = {
     "genEdType": "NO",
     "__typename": "Course",
     "dropbox": "214",
+    "color": "blue",
   },
   "2940308": {
     "studyProgram": "S",
@@ -283,6 +296,7 @@ export const dataCourse = {
     "genEdType": "NO",
     "__typename": "Course",
     "dropbox": "215",
+    "color": "blue",
   },
   "2940309": {
     "studyProgram": "S",
@@ -303,6 +317,7 @@ export const dataCourse = {
     "genEdType": "NO",
     "__typename": "Course",
     "dropbox": "216",
+    "color": "blue",
   },
   "2945113": {
     "studyProgram": "S",
@@ -323,6 +338,7 @@ export const dataCourse = {
     "genEdType": "NO",
     "__typename": "Course",
     "dropbox": "217",
+    "color": "green",
   },
   "xxxxxxx": {
     "studyProgram": "S",
@@ -342,6 +358,7 @@ export const dataCourse = {
     "genEdType": "-",
     "__typename": "Course",
     "dropbox": "428",
+    "color": "gray",
   },
   "2945310": {
     "studyProgram": "S",
@@ -362,6 +379,7 @@ export const dataCourse = {
     "genEdType": "NO",
     "__typename": "Course",
     "dropbox": "227",
+    "color": "green",
   },
   "5500236": {
     "studyProgram": "S",
@@ -382,6 +400,7 @@ export const dataCourse = {
     "genEdType": "NO",
     "__typename": "Course",
     "dropbox": "223",
+    "color": "yellow",
   },
   "5500333": {
     "studyProgram": "S",
@@ -403,6 +422,7 @@ export const dataCourse = {
     "genEdType": "NO",
     "__typename": "Course",
     "dropbox": "313",
+    "color": "yellow",
   },
   "2941312": {
     "studyProgram": "S",
@@ -422,6 +442,7 @@ export const dataCourse = {
     "genEdType": "NO",
     "__typename": "Course",
     "dropbox": "314",
+    "color": "blue",
   },
   "2945351": {
     "studyProgram": "S",
@@ -441,6 +462,7 @@ export const dataCourse = {
     "genEdType": "NO",
     "__typename": "Course",
     "dropbox": "317",
+    "color": "green",
   },
   "2941313": {
     "studyProgram": "S",
@@ -460,6 +482,7 @@ export const dataCourse = {
     "genEdType": "NO",
     "__typename": "Course",
     "dropbox": "325",
+    "color": "blue",
   },
   "2900306": {
     "studyProgram": "S",
@@ -479,6 +502,7 @@ export const dataCourse = {
     "genEdType": "NO",
     "__typename": "Course",
     "dropbox": "326",
+    "color": "blue",
   },
   "2941409": {
     "studyProgram": "S",
@@ -499,6 +523,7 @@ export const dataCourse = {
     "genEdType": "NO",
     "__typename": "Course",
     "dropbox": "416",
+    "color": "blue",
   },
   "2900410": {
     "studyProgram": "S",
@@ -520,5 +545,6 @@ export const dataCourse = {
     "genEdType": "NO",
     "__typename": "Course",
     "dropbox": "426",
+    "color": "blue",
   },
 };
