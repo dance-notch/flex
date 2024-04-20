@@ -22,9 +22,7 @@ function SubjectBox({
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
-  const tmpCourse = course.filter((tmp) => {
-    return tmp.courseNo === codeId;
-  })[0];
+  const tmpCourse = course[codeId];
   return (
     course && (
       <>

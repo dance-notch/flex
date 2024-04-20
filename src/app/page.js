@@ -11,7 +11,6 @@ import { useSensor, useSensors, MouseSensor } from "@dnd-kit/core";
 export default function Home() {
   const sensors = useSensors(
     useSensor(MouseSensor, {
-      // onActivation: (event) => console.log("onActivation", event), // Here!
       activationConstraint: { distance: 5 },
     })
   );
@@ -24,6 +23,17 @@ export default function Home() {
         sensors={sensors}
         onDragEnd={(event) => {
           const { active, over } = event;
+          if (
+            semester.filter(
+              (item) =>
+                item.year + "" === over.id[0] &&
+                item.semester + "" === over.id[1]
+            )[0].dropbox[over.id[2]] ||
+            !over
+          ) {
+            return;
+          }
+
           const overId = over.id[2];
           const activeYear = active.id[0] ? active.id[0] - 0 : 0;
           const activeSemester = active.id[1] ? active.id[1] - 0 : 0;
@@ -78,23 +88,41 @@ export default function Home() {
               }
             })
           );
+          setCourse((prevData) => {
+            // Create a copy of the previous state
+            const newData = { ...prevData };
 
-          setCourse((prevData) =>
-            prevData.map((item, index) => {
-              if (item.courseNo === activeCodeId) {
-                return {
-                  ...item,
-                  dropbox:
-                    "" +
-                    over.data.current.year +
-                    over.data.current.semester +
-                    overId,
-                };
-              } else {
-                return item;
-              }
-            })
-          );
+            // Find the course with the matching course number
+            const courseToUpdate = newData[activeCodeId];
+
+            // If the course exists, update its dropbox property
+            if (courseToUpdate) {
+              courseToUpdate.dropbox =
+                "" +
+                over.data.current.year +
+                over.data.current.semester +
+                overId;
+            }
+
+            // Return the updated state
+            return newData;
+          });
+          // setCourse((prevData) =>
+          //   prevData.map((item, index) => {
+          //     if (item.courseNo === activeCodeId) {
+          //       return {
+          //         ...item,
+          //         dropbox:
+          //           "" +
+          //           over.data.current.year +
+          //           over.data.current.semester +
+          //           overId,
+          //       };
+          //     } else {
+          //       return item;
+          //     }
+          //   })
+          // );
 
           // setCourse((prevData) => ({
           //   ...prevData,

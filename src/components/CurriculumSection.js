@@ -121,11 +121,7 @@ function CurriculumSection({ semester, setSemester, course, setCourse }) {
                         {item.dropbox[index2] && course ? (
                           <SubjectBox
                             course={course}
-                            id={
-                              course.filter((tmp) => {
-                                return tmp.courseNo === item.dropbox[index2];
-                              })[0]?.dropbox
-                            }
+                            id={course[item.dropbox[index2]]?.dropbox}
                             codeId={item.dropbox[index2]}
                           />
                         ) : (
