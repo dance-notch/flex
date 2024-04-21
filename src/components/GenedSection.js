@@ -13,7 +13,7 @@ import { useState } from "react";
 
 import { dataGenEd } from "@/utilities/dataGenEd";
 
-const FilterSection = ({ setCudson }) => {
+const FilterSection = ({ cudson, setCudson }) => {
   const [filterSemester, setFilterSemester] = useState("");
   const [filterCurriculum, setFilterCurriculum] = useState("");
 
@@ -60,17 +60,17 @@ const FilterSection = ({ setCudson }) => {
             </Select>
           </FormControl>
         </Box>
-        <FormControlLabel
-          control={
-            <Checkbox
-              onChange={() => {
-                setCudson((prev) => !prev);
-              }}
-              sx={{ "& .MuiSvgIcon-root": { fontSize: 32 }, color: "#2A2D48" }}
-            />
-          }
-          label="Recommend from CUDSON"
-        />
+        <div className="flex items-center gap-2">
+          <Checkbox
+            onChange={() => {
+              setCudson((prev) => !prev);
+            }}
+            sx={{ "& .MuiSvgIcon-root": { fontSize: 32 }, color: "#2A2D48" }}
+          />
+          <p className={`text-primary ${cudson ? "font-bold" : ""}`}>
+            Recommend from CUDSON
+          </p>
+        </div>
       </div>
     </div>
   );
@@ -108,7 +108,7 @@ function GenedSection({
         <h2 className="text-primary text-[40px] font-semibold uppercase mb-[26px]">
           {name}
         </h2>
-        <FilterSection setCudson={setCudson} />
+        <FilterSection cudson={cudson} setCudson={setCudson} />
         <div className="flex flex-wrap w-full h-[225px] overflow-auto gap-x-10 gap-y-[25px]">
           {(cudson ? selectedKeys : Object.keys(dataGenEd)).map((key) => {
             const color = "gray";
