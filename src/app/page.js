@@ -27,7 +27,7 @@ export default function Home() {
     window.location.reload();
   };
 
-  if (window.innerWidth < 1024 && window !== undefined) {
+  if (typeof window !== 'undefined' && window.innerWidth < 1024) {
     return (
       <main className="flex flex-col items-center justify-center bg-white w-full min-h-screen font-poppins">
         <h1 className="w-full text-primary text-bold text-2xl text-center p-4">
@@ -36,6 +36,7 @@ export default function Home() {
       </main>
     );
   }
+  
   return (
     <main className="bg-white w-full h-full font-poppins">
       <Navbar />

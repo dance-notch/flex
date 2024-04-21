@@ -34,7 +34,7 @@ function GenEdDropBox({ index, codeId, year, semester, setSemester }) {
     if (check && !course) {
       setCourse(dataGenEd[codeId.slice(0, 7)]);
     }
-  }, []);
+  }, [codeId, course]);
 
   const { attributes, listeners, setNodeRef, transform } = useDraggable({
     id: "" + year + semester + index + codeId.replace(/[0-9]/g, ""),
