@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useState, useCallback } from "react";
 import Box from "@mui/material/Box";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
@@ -11,6 +11,50 @@ import { ThemeProvider } from "@mui/material/styles";
 import theme from "./theme";
 import SubjectBox from "./SubjectBox";
 import Dropbox from "./Dropbox";
+
+import "reactflow/dist/style.css";
+import ReactFlow, { applyEdgeChanges, applyNodeChanges } from "reactflow";
+import { dataCourse } from "@/utilities/dataSemester";
+
+const nodeTypes = {
+  custom: SubjectBox,
+};
+
+const initialNodes = [
+  {
+    id: "1",
+    type: "custom",
+    data: { course: dataCourse, codeId: "3404117", color: "blue" },
+    position: { x: 200, y: 400 },
+  },
+  {
+    id: "2",
+    type: "custom",
+    data: { course: dataCourse, codeId: "3404117", color: "blue" },
+    position: { x: 200, y: 600 },
+  },
+  {
+    id: "3",
+    type: "custom",
+    data: { course: dataCourse, codeId: "3404117", color: "blue" },
+    position: { x: 200, y: 200 },
+  },
+];
+
+const initialEdges = [
+  {
+    id: "e1-2",
+    source: "1",
+    target: "2",
+    style: { stroke: "#2A2D48" },
+  },
+  {
+    id: "e1-3",
+    source: "1",
+    target: "3",
+    style: { stroke: "#2A2D48" },
+  },
+];
 
 const FilterSection = () => {
   return (
@@ -83,9 +127,30 @@ const FilterSection = () => {
 };
 
 function CurriculumSection({ semester, setSemester, course, setCourse }) {
+  const [nodes, setNodes] = useState(initialNodes);
+  const [edges, setEdges] = useState(initialEdges);
+
+  const onNodesChange = useCallback(
+    (chs) => {
+      setNodes((nds) => applyNodeChanges(chs, nds));
+    },
+    [setNodes]
+  );
+
+  const onEdgesChange = useCallback(
+    (chs) => {
+      setEdges((eds) => applyEdgeChanges(chs, eds));
+    },
+    [setEdges]
+  );
+
+  const onConnect = useCallback(
+    (params) => setEdges((eds) => addEdge(params, eds)),
+    [setEdges]
+  );
   return (
     <ThemeProvider theme={theme}>
-      <section className="w-full px-[42px] py-[56px]">
+      <section className="w-full px-[42px] py-[56px] relative">
         {" "}
         <div className="flex items-center mb-[42px] text-primary uppercase">
           <h1 className=" text-5xl font-bold pr-3 py-2 border-r-2 border-primary">
@@ -96,10 +161,13 @@ function CurriculumSection({ semester, setSemester, course, setCourse }) {
           </p>
         </div>
         <FilterSection />
-        <div className="w-full flex gap-2.5 max-h-screen overflow-auto">
-          {semester.map((item) => {
+        <div className="w-full flex gap-2.5 max-h-screen overflow-auto relative">
+          {semester.map((item, index) => {
             return (
-              <div className="text-primary bg-white w-[230px] p-2.5 min-h-[600px] h-max border-[1px] border-hack-gray-stroke rounded">
+              <div
+                key={index}
+                className="text-primary bg-white w-[230px] p-2.5 min-h-[600px] h-max border-[1px] border-hack-gray-stroke rounded"
+              >
                 <div className="w-max h-full bg-[#FAFAFF] rounded-[15px] flex flex-col items-center p-2.5 gap-5">
                   <p className="font-semibold text-[16px] text-center py-2.5 px-[50px] border border-primary rounded-[5px] mb-4">
                     Year {item.year} <br />
@@ -108,6 +176,7 @@ function CurriculumSection({ semester, setSemester, course, setCourse }) {
                   {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((index2) => {
                     return (
                       <Dropbox
+                        key={index2}
                         id={"" + item.year + item.semester + index2}
                         year={item.year}
                         semester={item.semester}
@@ -120,13 +189,20 @@ function CurriculumSection({ semester, setSemester, course, setCourse }) {
                           /> */}
                         {item.dropbox[index2] && course ? (
                           <SubjectBox
-                            course={course}
-                            id={
-                              course.filter((tmp) => {
+                            data={{
+                              course: course,
+                              id: course.filter((tmp) => {
                                 return tmp.courseNo === item.dropbox[index2];
-                              })[0]?.dropbox
-                            }
-                            codeId={item.dropbox[index2]}
+                              })[0]?.dropbox,
+                              codeId: item.dropbox[index2],
+                            }}
+                            // course={course}
+                            // id={
+                            //   course.filter((tmp) => {
+                            //     return tmp.courseNo === item.dropbox[index2];
+                            //   })[0]?.dropbox
+                            // }
+                            // codeId={item.dropbox[index2]}
                           />
                         ) : (
                           <></>
@@ -138,6 +214,20 @@ function CurriculumSection({ semester, setSemester, course, setCourse }) {
               </div>
             );
           })}
+        </div>
+        <div className="absolute w-full h-full my-4 z-50 top-0">
+          <ReactFlow
+            nodes={nodes}
+            edges={edges}
+            nodeTypes={nodeTypes}
+            zoomOnDoubleClick={false}
+            zoomOnScroll={false}
+            zoomOnPinch={false}
+            paneMoveable={false}
+            onNodesChange={onNodesChange}
+            onEdgesChange={onEdgesChange}
+            onConnect={onConnect}
+          />
         </div>
       </section>
     </ThemeProvider>

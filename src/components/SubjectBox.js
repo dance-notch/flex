@@ -3,13 +3,20 @@ import { useDraggable } from "@dnd-kit/core";
 import generateId from "@/utilities/generateId";
 import { useState } from "react";
 import Modal from "@mui/material/Modal";
+import { Handle, Position } from "reactflow";
 
 function SubjectBox({
-  id = "000" + generateId(),
-  codeId,
-  course,
-  color = "gray",
+  // id = "000" + generateId(),
+  // codeId,
+  // course,
+  data,
+  // color = "gray",
 }) {
+  const course = data.course;
+  const codeId = data.codeId;
+  const id = data.id || "000" + generateId();
+  const color = data.color || "gray";
+
   const { attributes, listeners, setNodeRef, transform } = useDraggable({
     id: id === "xxxxxxx" ? "000" + generateId() : id,
     data: { codeId },
@@ -25,6 +32,7 @@ function SubjectBox({
   const tmpCourse = course.filter((tmp) => {
     return tmp.courseNo === codeId;
   })[0];
+
   return (
     course && (
       <>
@@ -44,6 +52,16 @@ function SubjectBox({
             <p className="font-semibold">{tmpCourse?.abbrName}</p>
             <p>{tmpCourse?.credit} credits</p>
           </div>
+          <Handle
+            type="target"
+            position={Position.Left}
+            className={`bg-hack-${color}-stroke border-none`}
+          />
+          <Handle
+            type="source"
+            position={Position.Right}
+            className={`bg-hack-${color}-stroke border-none`}
+          />
         </div>
         <Modal
           open={open}

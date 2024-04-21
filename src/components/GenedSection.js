@@ -7,6 +7,8 @@ import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import theme from "./theme";
 import SubjectBox from "./SubjectBox";
+import { ReactFlowProvider } from "reactflow";
+import "reactflow/dist/style.css";
 
 const FilterSection = () => {
   return (
@@ -69,18 +71,24 @@ const FilterSection = () => {
 function GenedSection({ course }) {
   return (
     <ThemeProvider theme={theme}>
-      <section className="w-full px-[42px] py-[56px]">
-        {" "}
-        <h2 className="text-primary text-[40px] font-semibold uppercase mb-[26px]">
-          Gen-Ed
-        </h2>
-        <FilterSection />
-        <div className="flex flex-wrap w-full h-[225px] overflow-auto gap-x-10 gap-y-[25px]">
-          {Array.from({ length: 100 }, (_, index) => index + 1).map((item) => {
-            return <SubjectBox codeId={"3404117"} course={course} />;
-          })}
-        </div>
-      </section>
+      <ReactFlowProvider>
+        <section className="w-full px-[42px] py-[56px]">
+          {" "}
+          <h2 className="text-primary text-[40px] font-semibold uppercase mb-[26px]">
+            Gen-Ed
+          </h2>
+          <FilterSection />
+          <div className="flex flex-wrap w-full h-[225px] overflow-auto gap-x-10 gap-y-[25px]">
+            {Array.from({ length: 100 }, (_, index) => index + 1).map(
+              (item) => {
+                return (
+                  <SubjectBox data={{ course: course, codeId: "3404117" }} />
+                );
+              }
+            )}
+          </div>
+        </section>
+      </ReactFlowProvider>
     </ThemeProvider>
   );
 }
