@@ -274,8 +274,8 @@ export default function Home() {
             </svg>
             <p className="text-primary font-medium text-[32px] text-center break-words mb-16">
               <span className="font-bold text-red-500">Warning</span> <br />
-              {messageEiEi.map((item) => (
-                <p>{item}</p>
+              {messageEiEi.map((item, index) => (
+                <p key={index}>{item}</p>
               ))}
             </p>
           </div>
