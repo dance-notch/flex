@@ -196,7 +196,7 @@ function SubjectBox({ id, codeId, course }) {
             </div>
             <div className="flex flex-col items-center">
               <svg
-                className="mb-8"
+                className="mb-8 stroke-yellow-500"
                 width="120"
                 height="108"
                 viewBox="0 0 120 108"
@@ -205,8 +205,7 @@ function SubjectBox({ id, codeId, course }) {
               >
                 <path
                   d="M60.0017 42.467V65.5145M2.87137 86.2634C-2.44679 95.4824 4.20399 107 14.8342 107H105.169C115.793 107 122.444 95.4824 117.132 86.2634L71.9706 7.91425C66.6525 -1.30475 53.3509 -1.30475 48.0328 7.91425L2.87137 86.2634ZM60.0017 83.9525H60.0447V84.0017H60.0017V83.9525Z"
-                  stroke="black"
-                  stroke-width="1.5"
+                  stroke-width="5"
                   stroke-linecap="round"
                   stroke-linejoin="round"
                 />
