@@ -12,9 +12,11 @@ import theme from "./theme";
 import SubjectBox from "./SubjectBox";
 import Dropbox from "./Dropbox";
 import GenEdDropBox from "./GenEdDropbox";
-import generateId from "@/utilities/generateId";
+import { useState } from "react";
 
 const FilterSection = ({ reset }) => {
+  const [faculty, setFaculty] = useState("");
+  const [major, setMajor] = useState("");
   return (
     <div className="flex justify-between mb-[10px]">
       <div className="flex gap-[10px]">
@@ -24,12 +26,11 @@ const FilterSection = ({ reset }) => {
             <Select
               labelId="demo-simple-select-label"
               id="demo-simple-select"
-              value={""}
+              value={faculty}
               label="Faculty"
+              onChange={(event) => setFaculty(event.target.value)}
             >
-              <MenuItem value={10}>Ten</MenuItem>
-              <MenuItem value={20}>Twenty</MenuItem>
-              <MenuItem value={30}>Thirty</MenuItem>
+              <MenuItem value={"Economics"}>Economics</MenuItem>
             </Select>
           </FormControl>
         </Box>
@@ -39,12 +40,11 @@ const FilterSection = ({ reset }) => {
             <Select
               labelId="demo-simple-select-label"
               id="demo-simple-select"
-              value={""}
+              value={major}
               label="Major"
+              onChange={(event) => setMajor(event.target.value)}
             >
-              <MenuItem value={10}>Ten</MenuItem>
-              <MenuItem value={20}>Twenty</MenuItem>
-              <MenuItem value={30}>Thirty</MenuItem>
+              <MenuItem value={"เอก"}>เอก</MenuItem>
             </Select>
           </FormControl>
         </Box>
