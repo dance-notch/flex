@@ -66,7 +66,7 @@ const FilterSection = ({ setCudson }) => {
               onChange={() => {
                 setCudson((prev) => !prev);
               }}
-              sx={{ "& .MuiSvgIcon-root": { fontSize: 32 } }}
+              sx={{ "& .MuiSvgIcon-root": { fontSize: 32 }, color: "#2A2D48" }}
             />
           }
           label="Recommend from CUDSON"

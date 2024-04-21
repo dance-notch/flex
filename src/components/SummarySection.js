@@ -5,7 +5,7 @@ import theme from "./theme";
 function SummarySection() {
   return (
     <ThemeProvider theme={theme}>
-      <section className=" px-[42px] py-[56px]">
+      <section className="text-primary px-[42px] py-[56px]">
         <div className="px-[30px] py-5 border w-[578px] rounded-[10px]">
           <h2 className="text-primary text-4xl font-bold mb-3">Summary</h2>
           <ul className="w-full space-y-3">
