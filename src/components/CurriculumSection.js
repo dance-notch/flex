@@ -6,7 +6,7 @@ import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import Button from "@mui/material/Button";
-
+import Modal from "@mui/material/Modal";
 import { ThemeProvider } from "@mui/material/styles";
 import theme from "./theme";
 import SubjectBox from "./SubjectBox";
@@ -95,6 +95,12 @@ function CurriculumSection({
   course,
   setCourse,
 }) {
+  const [open, setOpen] = useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
+
+  const handleOnclick = ({ name }) => {};
+
   return (
     <ThemeProvider theme={theme}>
       <section className="w-full px-[42px] py-[56px]">
@@ -157,7 +163,83 @@ function CurriculumSection({
             );
           })}
         </div>
+        <div className="relative w-full flex justify-end">
+          <Button
+            sx={{
+              height: "60px",
+              width: "60px",
+              borderRadius: "100%",
+              position: "absolute",
+              top: "-125px",
+              right: "75px",
+              zIndex: "2000",
+            }}
+            variant="contained"
+            onClick={handleOpen}
+          >
+            <svg
+              width="30"
+              height="30"
+              viewBox="0 0 30 30"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M15 5.625V24.375M24.375 15H5.625"
+                stroke="white"
+                stroke-width="5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+          </Button>
+        </div>
       </section>
+      <Modal
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        <div className="min-w-[825px] fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white px-14 py-12 rounded-[16px] space-y-[14px]">
+          <div className="w-full flex justify-end items-center text-[32px] font-bold text-primary mb-9">
+            <button onClick={handleClose}>
+              <svg
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M2.3999 21.6L21.5999 2.39999M2.3999 2.39999L21.5999 21.6"
+                  stroke="#2A2D48"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </button>
+          </div>
+          <div className="flex justify-evenly items-center">
+            {["GEN-ED", "ELECTIVES", "FREE ELECTIVES"].map((item) => {
+              const color = "gray";
+              return (
+                <div
+                  className={`hover:cursor-pointer w-[183px] h-[100px] border-[3px] border-dashed  rounded flex z-[50] border-hack-${color}-stroke active:z-[1000]`}
+                >
+                  <div
+                    className={`w-full text-center flex flex-col justify-center items-center bg-white text-hack-${color}-text`}
+                  >
+                    <p className="font-semibold">{item}</p>
+                    <p>({3} credits)</p>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </Modal>
     </ThemeProvider>
   );
 }
