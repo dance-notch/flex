@@ -11,8 +11,12 @@ import { ThemeProvider } from "@mui/material/styles";
 import theme from "./theme";
 import SubjectBox from "./SubjectBox";
 import Dropbox from "./Dropbox";
+import GenEdDropBox from "./GenEdDropbox";
+import { useState } from "react";
 
 const FilterSection = ({ reset }) => {
+  const [faculty, setFaculty] = useState("");
+  const [major, setMajor] = useState("");
   return (
     <div className="flex justify-between mb-[10px]">
       <div className="flex gap-[10px]">
@@ -22,12 +26,11 @@ const FilterSection = ({ reset }) => {
             <Select
               labelId="demo-simple-select-label"
               id="demo-simple-select"
-              value={""}
+              value={faculty}
               label="Faculty"
+              onChange={(event) => setFaculty(event.target.value)}
             >
-              <MenuItem value={10}>Ten</MenuItem>
-              <MenuItem value={20}>Twenty</MenuItem>
-              <MenuItem value={30}>Thirty</MenuItem>
+              <MenuItem value={"Economics"}>Economics</MenuItem>
             </Select>
           </FormControl>
         </Box>
@@ -37,12 +40,11 @@ const FilterSection = ({ reset }) => {
             <Select
               labelId="demo-simple-select-label"
               id="demo-simple-select"
-              value={""}
+              value={major}
               label="Major"
+              onChange={(event) => setMajor(event.target.value)}
             >
-              <MenuItem value={10}>Ten</MenuItem>
-              <MenuItem value={20}>Twenty</MenuItem>
-              <MenuItem value={30}>Thirty</MenuItem>
+              <MenuItem value={"เอก"}>เอก</MenuItem>
             </Select>
           </FormControl>
         </Box>
@@ -126,18 +128,24 @@ function CurriculumSection({
                         year={item.year}
                         semester={item.semester}
                       >
-                        {/* {item.dropbox[index2] ? (
-                          <SubjectBox
-                            course={course}
-                            id={course[item.dropbox[index2]].dropbox}
-                            codeId={item.dropbox[index2]}
-                          /> */}
                         {item.dropbox[index2] && course ? (
-                          <SubjectBox
-                            course={course}
-                            id={course[item.dropbox[index2]]?.dropbox}
-                            codeId={item.dropbox[index2]}
-                          />
+                          !item.dropbox[index2].includes("gened") &&
+                          !item.dropbox[index2].includes("freeElective") &&
+                          !item.dropbox[index2].includes("elective") ? (
+                            <SubjectBox
+                              course={course}
+                              id={course[item.dropbox[index2]]?.dropbox}
+                              codeId={item.dropbox[index2]}
+                            />
+                          ) : (
+                            <GenEdDropBox
+                              index={index2}
+                              codeId={item.dropbox[index2]}
+                              year={item.year}
+                              semester={item.semester}
+                              setSemester={setSemester}
+                            />
+                          )
                         ) : (
                           <></>
                         )}
