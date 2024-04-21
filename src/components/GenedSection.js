@@ -109,7 +109,11 @@ function GenedSection({
           {name}
         </h2>
         <FilterSection cudson={cudson} setCudson={setCudson} />
-        <div className="flex flex-wrap w-full h-[225px] overflow-auto gap-x-10 gap-y-[25px]">
+        <div
+          className={`flex flex-wrap ${
+            openCheck ? "w-full" : "w-[1100px]"
+          } h-[225px] overflow-auto gap-x-10 gap-y-[25px]`}
+        >
           {(cudson ? selectedKeys : Object.keys(dataGenEd)).map((key) => {
             const color = "gray";
             const tmpCourse = dataGenEd[key];
@@ -151,7 +155,7 @@ function GenedSection({
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
-        <div className="min-w-[900px] fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white px-14 py-12 rounded-[16px] space-y-[14px]">
+        <div className="w-[910px] fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white px-14 py-12 rounded-[16px] space-y-[14px]">
           <p className="w-full flex justify-between items-center text-[32px] font-bold text-primary">
             {`${data?.courseNo} ${data?.abbrName}`}
             <button onClick={handleClose}>
