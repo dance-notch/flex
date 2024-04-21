@@ -27,7 +27,7 @@ export default function Home() {
     window.location.reload();
   };
 
-  if (window.innerWidth < 1024) {
+  if (window.innerWidth < 1024 && window !== undefined) {
     return (
       <main className="flex flex-col items-center justify-center bg-white w-full min-h-screen font-poppins">
         <h1 className="w-full text-primary text-bold text-2xl text-center p-4">
@@ -274,8 +274,8 @@ export default function Home() {
             </svg>
             <p className="text-primary font-medium text-[32px] text-center break-words mb-16">
               <span className="font-bold text-red-500">Warning</span> <br />
-              {messageEiEi.map((item, index) => (
-                <p key={index}>{item}</p>
+              {messageEiEi.map((item) => (
+                <p>{item}</p>
               ))}
             </p>
           </div>
