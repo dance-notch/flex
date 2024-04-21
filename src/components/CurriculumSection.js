@@ -222,10 +222,11 @@ function CurriculumSection({
             </button>
           </div>
           <div className="flex justify-evenly items-center">
-            {["GEN-ED", "ELECTIVES", "FREE ELECTIVES"].map((item) => {
+            {["GEN-ED", "ELECTIVES", "FREE ELECTIVES"].map((item, index) => { // Add index parameter
               const color = "gray";
               return (
                 <div
+                  key={index} // Add key prop with unique value
                   className={`hover:cursor-pointer w-[183px] h-[100px] border-[3px] border-dashed  rounded flex z-[50] border-hack-${color}-stroke active:z-[1000]`}
                 >
                   <div
